@@ -22,6 +22,10 @@ public class GameHandler : MonoBehaviour
 
     public string data;
 
+    public float cooldownTime;
+    public bool canPressButton = true;
+    private float cooldownTimer;
+
     private void Start()
     {
         LoadData();
@@ -36,20 +40,41 @@ public class GameHandler : MonoBehaviour
     {
         data = arduinoCommunicationReceiver.GetLastestData();
 
-        if (data == "A")
+        //if (canPressButton && Input.GetKeyDown(KeyCode.A))
+        if (canPressButton && data == "A")
         {
+
             IncreaseBolo();
             UpdatePercentage();
             SaveData();
-            ShowPoints();
+            SelectBolo();
+
+            canPressButton = false;
+            cooldownTimer = cooldownTime;
         }
 
-        if (data == "B")
+
+        //if (canPressButton && Input.GetKeyDown(KeyCode.B))
+        if (canPressButton && data == "B")
+
         {
             IncreaseBeijinho();
             UpdatePercentage();
             SaveData();
-            ShowPoints();
+            SelectBeijinho();
+
+            canPressButton = false;
+            cooldownTimer = cooldownTime;
+        }
+
+
+        if (!canPressButton)
+        {
+            cooldownTimer -= Time.deltaTime;
+            if (cooldownTimer <= 0)
+            {
+                canPressButton = true;
+            }
         }
     }
 
@@ -97,8 +122,17 @@ public class GameHandler : MonoBehaviour
         }
     }
 
+    public void SelectBeijinho()
+    {
+        beijinho.GetComponent<Animator>().Play("SelectShakeBeijinho");
+    }
 
-    private void ShowPoints()
+    public void SelectBolo()
+    {
+        bolo.GetComponent<Animator>().Play("SelectShakeBolo");
+    }
+
+    public void ShowPoints()
     {
         beijinho.GetComponent<Animator>().Play("ToSide");
         bolo.GetComponent<Animator>().Play("ToSide");

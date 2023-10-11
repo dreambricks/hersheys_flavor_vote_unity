@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BoloController : MonoBehaviour
 {
+    public GameHandler gameHandler;
+
     public GameObject thank_vote;
 
     public float totalTime;
@@ -29,9 +31,10 @@ public class BoloController : MonoBehaviour
             int randomInt = Random.Range(2, 6);
             currentTime = totalTime + randomInt;
 
-            bool isPlaying = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("ToSide");
+            bool isPlayingSide = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("ToSide");
+            bool isPlayingSelect = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("SelectShakeBolo");
 
-            if (!isPlaying)
+            if (!isPlayingSide && !isPlayingSelect)
             {
                 GetComponent<Animator>().Play("Shake");
             }
@@ -48,6 +51,11 @@ public class BoloController : MonoBehaviour
     public void OnAnimationEnd()
     {
         GetComponent<Animator>().Play("Rest");
+    }
+
+    public void OnSelectedBolo()
+    {
+        gameHandler.ShowPoints();
     }
 
 

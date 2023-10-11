@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class BeijinhoController : MonoBehaviour
 {
+
+    public GameHandler gameHandler; 
+
     public float totalTime;
     private float currentTime;
 
@@ -29,10 +32,12 @@ public class BeijinhoController : MonoBehaviour
             currentTime = totalTime + randomInt;
 
             
-            bool isPlaying = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("ToSide");
+            bool isPlayingSide = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("ToSide");
+            bool isPlayingSelect = GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("SelectShakeBeijinho");
 
-           
-            if (!isPlaying)
+
+
+            if (!isPlayingSide && !isPlayingSelect)
             {
                 GetComponent<Animator>().Play("ShakeBeijinho");
             }
@@ -43,6 +48,11 @@ public class BeijinhoController : MonoBehaviour
     public void OnAnimationEndAndThank()
     {
         GetComponent<Animator>().Play("Rest");
+    }
+
+    public void OnSelectedBeijinho()
+    {
+        gameHandler.ShowPoints();
     }
 
 }

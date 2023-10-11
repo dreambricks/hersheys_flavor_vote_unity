@@ -556,6 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f4eb3a15c6db74aa98df2db4dc05bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameHandler: {fileID: 2026598090}
   totalTime: 7
 --- !u!1 &1034091269
 GameObject:
@@ -749,6 +750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87941127b155204ab4b80cf195ef399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameHandler: {fileID: 2026598090}
   thank_vote: {fileID: 61946636}
   totalTime: 7
 --- !u!1 &1885358759
@@ -961,3 +963,5 @@ MonoBehaviour:
   beijinho: {fileID: 949721984}
   bolo: {fileID: 1712454060}
   data: 
+  cooldownTime: 11
+  canPressButton: 1

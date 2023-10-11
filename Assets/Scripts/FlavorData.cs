@@ -12,7 +12,7 @@ public class FlavorData
     public static void SaveToJson(FlavorData flavorData)
     {
 
-        string folderJson = Path.Combine(Application.persistentDataPath, "flavorData");
+        string folderJson = Path.Combine(Application.streamingAssetsPath, "flavorData");
 
         if (!Directory.Exists(folderJson))
         {
@@ -28,7 +28,7 @@ public class FlavorData
 
     public static FlavorData LoadFromJson()
     {
-        string folderJson = Path.Combine(Application.persistentDataPath, "flavorData");
+        string folderJson = Path.Combine(Application.streamingAssetsPath, "flavorData");
 
         if (!Directory.Exists(folderJson))
         {
